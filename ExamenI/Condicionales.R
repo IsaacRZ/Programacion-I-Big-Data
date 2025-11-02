@@ -50,4 +50,5 @@ resultado <- switch(opcion,
                     b = "Eleccion B",
                     c = "Eleccion C",
                     "opcion no valida")
+print(resultado)
 #>Switch devuelve "Eleccion C"
