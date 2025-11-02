@@ -27,3 +27,12 @@ repeat {
   }
   numero <- numero + 1
 }
+# %% Repeat:
+contador <- 5
+repeat {
+  cat("Contador es:", contador, "\n")
+  contador <- contador - 1
+  if (contador == 0) {
+    break
+  }
+}

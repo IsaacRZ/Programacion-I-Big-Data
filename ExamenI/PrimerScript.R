@@ -5,8 +5,7 @@ print(resultado)
 
 #Definicion variable
 x <- 23
-Cartago <- TRUE
+cartago <- TRUE
 ls()        #Listar variables cargadas
 rm(x)       #Remover variable
 rm(list = ls()) # Remover todas las variables
-
