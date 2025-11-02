@@ -52,3 +52,11 @@ resultado <- switch(opcion,
                     "opcion no valida")
 print(resultado)
 #>Switch devuelve "Eleccion C"
+
+# %% Condicional Switch con numeros:
+nota_estudiantes <- c(85, 92, 78, 90, 88, 95, 67, 73, 84, 91)
+corte <- 70
+ifelse(nota_estudiantes >= corte,
+       "Aprobado",
+       "Reprobado")
+#>Devuelve un vector con "Aprobado" y "Reprobado" segun las notas
