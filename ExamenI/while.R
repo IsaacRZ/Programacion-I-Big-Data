@@ -13,8 +13,9 @@ while (conta <= 5) {
 #%% Numero telefeno
 telefono <- readline(prompt = "Ingrese su número telefónico (8 dígitos): ")
 
-#>while (nchar(telefono) != 8 || !grepl("^[0-9]+$", telefono)) {
-#>while (nchar(telefono) != 8 {
-#>  telefono <- readline(prompt = "Número inválido. Ingrese un número telefónico
-#>  válido (8 dígitos): ")
-#>}
+while (nchar(telefono) != 8) {
+  cat("Error: El número telefónico debe tener exactamente 8 dígitos.\n")
+  telefono <- readline(prompt = "Ingrese su número telefónico (8 dígitos): ")
+}
+cat("Número telefónico válido ingresado:", telefono, "\n")
+#%% Validar edad
