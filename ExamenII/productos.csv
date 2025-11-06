@@ -1,0 +1,13 @@
+Producto,Categoria,Costo,Unidades
+Laptop,Electrónica,1200,5
+Mouse,Accesorios,15,30
+Teclado,Accesorios,45,18
+Monitor,Electrónica,250,12
+Webcam,Accesorios,50,9
+SSD_500GB,Componentes,60,25
+RAM_16GB,Componentes,80,15
+Impresora,Electrónica,150,7
+Router,Redes,70,11
+Cable_HDMI,Accesorios,5,50
+Tarjeta_Video,Componentes,400,3
+Disco_Externo,Accesorios,85,14
