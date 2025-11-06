@@ -50,17 +50,17 @@ as.integer(v)
 #OPERACIONES CON VECTOR + - * / %
 
 
-#   Funciones que se aplican a vectores
-#       • max y min: El máximo y el mínimo
-#       • sum y prod: La suma y el producto
-#       • cumsum y cumprod: La suma y producto acumulado
-#       • range: Devuelve el vector c(min(v),max(v))
-#       • sort: Devuelve el vector ordenado ascedentemente
-#       • rev: Devuelve el vector en orden inverso
-#       • mean, median, var y sd: Devuelven la media, mediana,
-#       varianza y desviación estándar.
+# Funciones que se aplican a vectores
+#     Estadísticas: sum(), prod(), mean(), median(), var(), sd().
+      
+#     Manipulación: max(), min(), range(), sort(), rev().
 
 #VECTORES LOGICOS
+
+#   & (AND Lógico): Devuelve TRUE solo si ambos elementos son TRUE.
+#   | (OR Lógico): Devuelve TRUE si al menos uno de los elementos es TRUE.
+#   ! (NOT Lógico): Invierte el valor lógico.
+
 v <- c(3:6)
 v < 5
 
@@ -69,4 +69,22 @@ v1<-c(TRUE,FALSE,TRUE,TRUE)
 v2<-c(TRUE,TRUE,TRUE,FALSE)
 v1&v2
 v1|v2
+
+#EJEMPLO 
+temperatura <- c(20, 28, 35, 15, 30, 42, 27)
+
+#   La temperatura debe ser mayor o igual a 25.
+#   La temperatura debe ser menor o igual a 30.
+corte_min <- 25
+corte_max <- 30
+
+condicion_ideal <- ((temperatura >= corte_min) & (temperatura <= corte_max))
+
+#Filtrar el Vector: Usar el vector lógico condicion_ideal para mostrar solo las temperaturas que cumplen la condición.
+
+#Nuevo Filtro OR (|): Queremos saber qué temperaturas son extremas: o son menores a 20 O son mayores a 35. Esto requiere el operador OR lógico (|).
+
+temperatura[condicion_ideal]
+condicion_extrema <- (temperatura < 20) | (temperatura > 35)
+
 
