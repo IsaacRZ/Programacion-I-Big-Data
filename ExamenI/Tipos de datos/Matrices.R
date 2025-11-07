@@ -1,3 +1,4 @@
+setwd("~/Big Data/ProgramacionI")
 #Estructura 2D (Filas y columnas) 
 # Datos homogeneos
 matriz1 <- matrix(c(8:11), nrow = 2,ncol=2)
@@ -39,3 +40,10 @@ solve(sistema,constantes)
 
 #Matriz logica
 matrix2 >= 6
+
+#Practica
+datos_ventas <- matrix(c(1:9),nrow=3,ncol=3,byrow=TRUE)
+datos_ventas[2,3]
+
+apply(datos_ventas, MARGIN = 2, sum)
+apply(datos_ventas, MARGIN = 1, mean)
