@@ -22,7 +22,12 @@ sum(puntos_anotados)
 
 
 matrix3 <- matrix(sample(1:12,9,replace = T),nrow=3)
+
+# La función apply() permite ejecutar cualquier función 
+# (ej. sqrt, sum, mean) a lo largo de una dimensión específica de la matriz:
+
 apply(matrix3,2,sqrt)
+
 
 #• Solución al sistema
 #     3x+y=18
