@@ -9,3 +9,5 @@ cartago <- TRUE
 ls()        #Listar variables cargadas
 rm(x)       #Remover variable
 rm(list = ls()) # Remover todas las variables
+
+setwd("~/Big Data/ProgramacionI") #Set Working Directory CTRL + SHIFT + H

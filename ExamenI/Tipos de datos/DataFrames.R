@@ -1,4 +1,5 @@
 setwd("~/Big Data/ProgramacionI")
+rm(list = ls()) # Remover todas las variables
 #DATAFRAME
 #Estructura 2D 
 #HETEROGENEA (Columnas con distintos tipos de datos:bool,int,float,chr)

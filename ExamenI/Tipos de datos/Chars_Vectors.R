@@ -1,3 +1,5 @@
+setwd("~/Big Data/ProgramacionI")
+rm(list = ls()) # Remover todas las variables
 # CADENA DE CARACTER
 Pais <- "Costa Rica"
 

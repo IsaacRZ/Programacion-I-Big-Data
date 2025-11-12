@@ -1,3 +1,5 @@
+setwd("~/Big Data/ProgramacionI")
+rm(list = ls())
 #Estructuras condicionales
 # %% Condicional:
 n1 <- 23

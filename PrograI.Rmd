@@ -1,0 +1,48 @@
+---
+title: "🚀 Mi Mapa del Tesoro en R"
+author: "Isaac"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+---
+
+<style>
+  body {
+    font-size: 1.1em;
+    line-height: 1.6;
+  }
+  h1, h2, h3 {
+    font-weight: bold;
+  }
+</style>
+
+# ¡Bienvenido, Explorador/a de Datos! 🗺️
+
+¡Hola! Estás sosteniendo el mapa para convertirte en un maestro de R. R no es solo un lenguaje de programación; es una **calculadora superpoderosa** y un **asistente de análisis de datos** todo en uno.
+
+En este mapa, cubriremos todas las "regiones" mágicas que hemos explorado, desde los ladrillos básicos hasta las herramientas más poderosas. ¡Vamos a la aventura!
+
+---
+
+# Unidad 1: Los Ladrillos de R (Vectores y Lógica) 🧱
+
+Todo en R se construye con **vectores**. Piensa en un vector como un **tren** donde cada vagón lleva un valor. La regla más importante: ¡todos los vagones deben llevar el mismo tipo de cosa (números, texto, o valores lógicos)!
+
+### Creando un Tren (Vector)
+
+Usamos `c()` (de "combinar") para crear nuestro tren.
+
+```{r vector}
+# Tren de números (vagones numéricos)
+temperaturas <- c(20, 28, 35, 15, 30, 42, 27)
+
+# Tren de texto (vagones de caracteres)
+ciudades <- c("Cartago", "San José", "Limón")
+
+# Tren de lógica (vagones TRUE/FALSE)
+hay_sol <- c(TRUE, FALSE, TRUE, TRUE)
+
+print(temperaturas)

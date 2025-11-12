@@ -1,5 +1,9 @@
+setwd("~/Big Data/ProgramacionI")
+rm(list = ls()) # Remover todas las variables
+
 # %% For Iterando sobre un elemento:
 objs <- c("carro", "casa", "árbol")
+
 for (c in objs) {
   print(c)
 }
@@ -7,6 +11,7 @@ for (c in objs) {
 # %%:
 nota_estudiantes <- c(85, 92, 78, 90, 88, 95, 67, 73, 84, 91)
 corte <- 70
+
 estado_for <- vector(mode = "character", length = 10)
 for (i in 1:10) {
   if (nota_estudiantes[i] >= corte) {
