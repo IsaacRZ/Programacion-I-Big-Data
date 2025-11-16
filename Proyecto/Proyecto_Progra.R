@@ -1,3 +1,4 @@
+#Working Directory del Proyecto
 setwd("~/Big Data/ProgramacionI")
 
 #LIMPIEZA GLOBAL ENV
