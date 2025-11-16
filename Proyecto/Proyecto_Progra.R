@@ -1,35 +1,115 @@
-#Proyecto Programación 1
-#Integrantes: Sebastián Calvo, Jafet Calvo, Isaac Rodríguez 
-contador <- 1
-grupo <- matrix(NA, nrow = 1, ncol = 3)
+#LIMPIEZA GLOBAL ENV
+#------------------#
+rm(list = ls())
+#------------------#
 
-for (contador in 1:10) {
 
-if (contador <= 1){
-  nota1 <- as.numeric(readline(prompt = "Ingrese la primera nota: "))
-  nota2 <- as.numeric(readline(prompt = "Ingrese la segunda nota: "))
-  nota3 <- as.numeric(readline(prompt = "Ingrese la tercera nota: "))
+#=====================================
+#           PROYECTO PROGRAMACIÓN I
+#=====================================
+#=====================================
+#Integrantes <- c( Sebastián Calvo,  
+#                 Jafet Calvo, 
+#                 Isaac Rodríguez )
+#=====================================
+
+
+#=============================================================================
+#           SISTEMA DE GESTION DE NOTAS ESTUDIANTILES
+#=============================================================================
+
+# ---- Constantes y CSV ----
+CORTE_APROBACION <- 70
+NUM_ESTUDIANTES <- 3
+NUM_MATERIAS <- 3
+NOMBRE_ARCHIVO <- "Notas2C.csv"
+# --------------------------
+
+# ---- Funcion Auxiliar: Validacion ingreso de datos numericos ---------
+# ---- Asegurar numero entre 0 y 100 -----------------------------------
+
+validar_nota <- function(mensaje, intento = 1) {
+  # Mostrar prompt al usuario
+  entrada <- readline(prompt = mensaje)
   
-  estudiante <- matrix(c(nota1, nota2, nota3), nrow = 1, ncol = 3)
-  materias <- c("Español", "Ciencias", "Matemáticas")
-  nombre <- paste0("Estudiante",contador)
-  colnames(estudiante) <- materias
-  rownames(estudiante) <- nombre  
+  # Convertir a numerico o devolver NA
+  nota <- suppressWarnings(as.numeric(entrada))
   
-  grupo <- estudiante
-}else if(contador <= 10){
-nota1 <- as.numeric(readline(prompt = "Ingrese la primera nota: "))
-nota2 <- as.numeric(readline(prompt = "Ingrese la segunda nota: "))
-nota3 <- as.numeric(readline(prompt = "Ingrese la tercera nota: "))
-
-estudiante <- matrix(c(nota1, nota2, nota3), nrow = 1, ncol = 3)
-materias <- c("Español", "Ciencias", "Matemáticas")
-nombre <- paste0("Estudiante",contador)
-colnames(estudiante) <- materias
-rownames(estudiante) <- nombre
-
-grupo <- rbind(grupo, estudiante)
-}else print("Ya no se pueden ingresar mas notas")
+  #Verificar que sea un numero valido 
+  if (is.na(nota)) {
+    cat("❌Error\n Ingrese un numero valido. \n")
+    return(validar_nota(mensaje,intento + 1)) #REINICIAR LA FUNCION 
+  } else if (nota < 0 || nota > 100 ) {
+    cat ("☣ Error. El numero debe estar entre 1 y 100")
+  } else {
+    return(nota) #NOTA VALIDA
+  }
 }
+# -----------------------------------------------------------------------
 
-print(grupo)
+#=============================================================================
+#           PARTE I: INGRESO DE DATOS
+#=============================================================================
+cat("\n")
+cat("============================================================================")
+cat("           SISTEMA DE CALIFICACIONES ESTUDIANTILES          ")
+cat("=============================================================================")
+cat("\n")
+cat(" 📊 Configuracion del sistema.\n")
+cat(paste("   • Número de estudiantes:", NUM_ESTUDIANTES, "\n"))
+cat(paste("   • Materias por estudiante:", NUM_MATERIAS, "\n"))
+cat(paste("   • Nota mínima de aprobación:", CORTE_APROBACION, "\n"))
+cat("\n")
+
+#Columnas del DF
+columnas <- c("Nombre", 
+              "Nota_Materia1", "Aprobado_M1", 
+              "Nota_Materia2", "Aprobado_M2", 
+              "Nota_Materia3", "Aprobado_M3")
+
+# Inicializamos el DF vacío
+df_calificaciones <- data.frame(matrix(ncol = length(columnas), nrow = 0))
+colnames(df_calificaciones) <- columnas
+# Esperamos que el usuario esté listo para comenzar
+readline(prompt = "Presione ENTER para comenzar el ingreso de datos...")
+
+
+# --- BUCLE PRINCIPAL DE CAPTURA DE DATOS ---
+for (i in 1:NUM_ESTUDIANTES) {
+  
+  cat("\n")
+  cat("═══════════════════════════════════════════════════════════════\n")
+  cat(paste("   ESTUDIANTE", i, "de", NUM_ESTUDIANTES, "\n"))
+  cat("═══════════════════════════════════════════════════════════════\n")
+  
+  # Capturamos las calificaciones con validación
+  n1 <- validar_nota("  📝 Calificación de Materia 1 (0-100): ")
+  n2 <- validar_nota("  📝 Calificación de Materia 2 (0-100): ")
+  n3 <- validar_nota("  📝 Calificación de Materia 3 (0-100): ")
+  
+  # Calculamos el estado de aprobación (TRUE/FALSE) para cada materia
+  ap1 <- n1 >= CORTE_APROBACION
+  ap2 <- n2 >= CORTE_APROBACION
+  ap3 <- n3 >= CORTE_APROBACION
+  
+  # Calculamos el promedio individual 
+  promedio_individual <- mean(c(n1, n2, n3))
+  
+  # Mostramos un resumen inmediato al usuario
+  cat("\n  ✅ Datos registrados:\n")
+  cat(sprintf("     Materia 1: %.2f [%s]\n", n1, ifelse(ap1, "✓ Aprobado", "✗ Reprobado")))
+  cat(sprintf("     Materia 2: %.2f [%s]\n", n2, ifelse(ap2, "✓ Aprobado", "✗ Reprobado")))
+  cat(sprintf("     Materia 3: %.2f [%s]\n", n3, ifelse(ap3, "✓ Aprobado", "✗ Reprobado")))
+  cat(sprintf("     Promedio: %.2f\n", promedio_individual))
+  
+  # Creamos la fila con los datos del estudiante
+  nueva_fila <- data.frame(
+    Nombre = paste0("Estudiante_", i),
+    Nota_Materia1 = n1, Aprobado_M1 = ap1,
+    Nota_Materia2 = n2, Aprobado_M2 = ap2,
+    Nota_Materia3 = n3, Aprobado_M3 = ap3,
+    stringsAsFactors = FALSE  # Evitamos conversión automática a factores
+  )
+  # Agregamos la fila al Data Frame principal
+  df_calificaciones <- rbind(df_calificaciones, nueva_fila)
+}
