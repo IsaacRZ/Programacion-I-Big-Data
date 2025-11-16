@@ -1,0 +1,4 @@
+"Nombre","Nota_Materia1","Aprobado_M1","Nota_Materia2","Aprobado_M2","Nota_Materia3","Aprobado_M3","Promedio_Individual"
+"Estudiante_1",80,TRUE,88,TRUE,86,TRUE,84.67
+"Estudiante_2",99,TRUE,60,FALSE,80,TRUE,79.67
+"Estudiante_3",70,TRUE,80,TRUE,90,TRUE,80

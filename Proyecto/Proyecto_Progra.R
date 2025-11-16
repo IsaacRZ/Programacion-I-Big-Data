@@ -1,3 +1,5 @@
+setwd("~/Big Data/ProgramacionI")
+
 #LIMPIEZA GLOBAL ENV
 #------------------#
 rm(list = ls())
@@ -113,3 +115,64 @@ for (i in 1:NUM_ESTUDIANTES) {
   # Agregamos la fila al Data Frame principal
   df_calificaciones <- rbind(df_calificaciones, nueva_fila)
 }
+
+#=============================================================================
+#           PARTE II: ANALISIS RESULTADOS
+#=============================================================================
+#PROMEDIO POR ESTUDIANTE:
+promedios_estudiante <- numeric(NUM_ESTUDIANTES)
+
+for (i in 1:NUM_ESTUDIANTES){
+  notas <- c(
+    df_calificaciones$Nota_Materia1[i],
+    df_calificaciones$Nota_Materia2[i],
+    df_calificaciones$Nota_Materia3[i])
+  promedios_estudiante[i] <- mean(notas)
+}
+
+#Nueva columna promedios
+df_calificaciones$Promedio_Individual <- round(promedios_estudiante,2)
+cat("Se agregó una nueva columna con los promedios individuales: ✔ \n")
+print(df_calificaciones)
+
+#PROMEDIO GENERAL:
+# -----------------------------------------------------------------------
+todas_las_notas <- c( df_calificaciones$Nota_Materia1,
+                      df_calificaciones$Nota_Materia2,
+                      df_calificaciones$Nota_Materia3)
+promedio_general <- mean(todas_las_notas)
+cat("Promedio general es:", round(promedio_general,2))
+
+#CALIFICACION MAS BAJA
+nota_minima <- min(todas_las_notas)
+cat("La nota minima es: ", nota_minima)
+
+#CALIFICACION MAS ALTA
+nota_maxima <- max(todas_las_notas)
+cat("La nota minima es: ", nota_maxima)
+
+#=============================================================================
+#           PARTE III: EXPORTACIÓN DE DATOS 
+#=============================================================================
+cat("\n")
+cat("💾 Guardando datos en archivo CSV...\n")
+
+# Intentamos guardar el archivo con manejo de errores
+resultado_guardado <- tryCatch({
+  write.csv(df_calificaciones, 
+            file = NOMBRE_ARCHIVO, 
+            row.names = FALSE,  # No incluimos números de fila
+            fileEncoding = "UTF-8")  # Codificación para caracteres especiales
+  TRUE
+}, error = function(e) {
+  cat(paste("   ⚠️  ERROR al guardar:", e$message, "\n"))
+  FALSE
+})
+
+if (resultado_guardado) {
+  cat(paste("   ✅ Archivo guardado exitosamente:", NOMBRE_ARCHIVO, "\n"))
+  cat(paste("   📁 Ubicación:", getwd(), "\n"))
+} else {
+  cat("   ❌ No se pudo guardar el archivo.\n")
+}
+
