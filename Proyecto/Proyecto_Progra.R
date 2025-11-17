@@ -162,9 +162,9 @@ cat("💾 Guardando datos en archivo CSV...\n")
 resultado_guardado <- tryCatch({
   write.csv(df_calificaciones, 
             file = NOMBRE_ARCHIVO, 
-            row.names = FALSE,  # No incluimos números de fila
+            row.names = TRUE,  # No incluimos números de fila
             fileEncoding = "UTF-8")  # Codificación para caracteres especiales
-  TRUE
+            TRUE
 }, error = function(e) {
   cat(paste("   ⚠️  ERROR al guardar:", e$message, "\n"))
   FALSE
