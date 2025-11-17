@@ -32,11 +32,11 @@ NOMBRE_ARCHIVO <- "Notas2C.csv"
 # ---- Asegurar numero entre 0 y 100 -----------------------------------
 
 validar_nota <- function(mensaje, intento = 1) {
-  # Mostrar prompt al usuario
+  #Almacenar prompt del usuario temporal
   entrada <- readline(prompt = mensaje)
   
-  # Convertir a numerico o devolver NA
-  nota <- suppressWarnings(as.numeric(entrada))
+  # Convertir a numerico o devolver NA y suprimir alertas ⚠
+  nota <- suppressWarnings(as.numeric(entrada)) 
   
   #Verificar que sea un numero valido 
   if (is.na(nota)) {
