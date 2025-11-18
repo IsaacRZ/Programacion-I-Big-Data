@@ -1,4 +1,5 @@
 #Working Directory del Proyecto
+#PULL 
 setwd("~/Big Data/ProgramacionI") # ctrl + shift + H 
 
 #LIMPIEZA GLOBAL ENV
