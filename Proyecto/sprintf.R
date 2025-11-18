@@ -6,3 +6,4 @@ cat(sprintf("     Materia 1: %.2f %.2f [%s]\n", n1,n2, ifelse(ap1, "✓ Aprobado
                             # %.2f -> marcador especial 2 decimales float
                             # %.s  -> marcador especial string 
 cat(sprintf("     Materia 1: %.2f [%s]\n", n1, ifelse(ap1, "✓ Aprobado", "✗ Reprobado")))
+
