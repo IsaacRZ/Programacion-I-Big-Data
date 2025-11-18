@@ -1,4 +1,4 @@
-"Nombre,""Nota_Materia1"",""Aprobado_M1"",""Nota_Materia2"",""Aprobado_M2"",""Nota_Materia3"",""Aprobado_M3"",""Promedio_Individual"""
-Estudiante_1,70,TRUE,80,TRUE,88,TRUE,79.33
-Estudiante_2,50,FALSE,60,FALSE,70,TRUE,60
-Estudiante_3,90,TRUE,40,FALSE,70,TRUE,66.67
+"","Nombre","Nota_Materia1","Aprobado_M1","Nota_Materia2","Aprobado_M2","Nota_Materia3","Aprobado_M3","Promedio_Individual"
+"1","Estudiante_1",100,TRUE,30,FALSE,40,FALSE,56.67
+"2","Estudiante_2",40,FALSE,40,FALSE,50,FALSE,43.33
+"3","Estudiante_3",100,TRUE,99,TRUE,98,TRUE,99

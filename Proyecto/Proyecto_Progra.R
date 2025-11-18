@@ -1,5 +1,5 @@
 #Working Directory del Proyecto
-setwd("~/Big Data/ProgramacionI")
+setwd("~/Big Data/ProgramacionI") # ctrl + shift + H 
 
 #LIMPIEZA GLOBAL ENV
 #------------------#
@@ -21,7 +21,7 @@ rm(list = ls())
 #           SISTEMA DE GESTION DE NOTAS ESTUDIANTILES
 #=============================================================================
 
-# ---- Constantes y CSV ----
+# ---- CONSTANTES y archivo CSV ----
 CORTE_APROBACION <- 70
 NUM_ESTUDIANTES <- 3
 NUM_MATERIAS <- 3
@@ -40,10 +40,11 @@ validar_nota <- function(mensaje, intento = 1) {
   
   #Verificar que sea un numero valido 
   if (is.na(nota)) {
-    cat("❌Error\n Ingrese un numero valido. \n")
+    cat("❌Error\n Ingrese un numero valido (0-100). \n")
     return(validar_nota(mensaje,intento + 1)) #REINICIAR LA FUNCION 
   } else if (nota < 0 || nota > 100 ) {
-    cat ("☣ Error. El numero debe estar entre 1 y 100")
+    cat ("☣ Error. El numero debe estar entre 0 y 100")
+    return(validar_nota(mensaje,intento + 1)) #REINICIAR LA FUNCION 
   } else {
     return(nota) #NOTA VALIDA
   }
@@ -81,9 +82,9 @@ readline(prompt = "Presione ENTER para comenzar el ingreso de datos...")
 for (i in 1:NUM_ESTUDIANTES) {
   
   cat("\n")
-  cat("═══════════════════════════════════════════════════════════════\n")
+  cat("════════════════════════════════════════════════════════\n")
   cat(paste("   ESTUDIANTE", i, "de", NUM_ESTUDIANTES, "\n"))
-  cat("═══════════════════════════════════════════════════════════════\n")
+  cat("════════════════════════════════════════════════════════\n")
   
   # Capturamos las calificaciones con validación
   n1 <- validar_nota("  📝 Calificación de Materia 1 (0-100): ")
