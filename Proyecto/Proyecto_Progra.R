@@ -40,14 +40,14 @@ validar_nota <- function(mensaje, intento = 1) {
   nota <- suppressWarnings(as.numeric(entrada)) 
   
   #Verificar que sea un numero valido 
-  if (is.na(nota)) {
+  if (is.na(nota)) { #Al convertirlo en numerico si es un string devuelve NA 
     cat("❌Error\n Ingrese un numero valido (0-100). \n")
     return(validar_nota(mensaje,intento + 1)) #REINICIAR LA FUNCION 
-  } else if (nota < 0 || nota > 100 ) {
+  } else if (nota < 0 || nota > 100 ) { #Condicion numerica valida (0-100)
     cat ("☣ Error. El numero debe estar entre 0 y 100")
     return(validar_nota(mensaje,intento + 1)) #REINICIAR LA FUNCION 
   } else {
-    return(nota) #NOTA VALIDA
+    return(nota) #nos devuelve NOTA VALIDA
   }
 }
 # -----------------------------------------------------------------------
@@ -67,7 +67,11 @@ cat(paste("   • Nota mínima de aprobación:", CORTE_APROBACION, "\n"))
 cat("\n")
 
 #Columnas del DF
-columnas <- c("Nombre", 
+rm(columnas)
+
+cat("\n")
+cat(paste("Se crearan la siguiente cantidad de materias por estudiante:", NUM_MATERIAS, "\n"))
+columnas <-  c("Nombre", 
               "Nota_Materia1", "Aprobado_M1", 
               "Nota_Materia2", "Aprobado_M2", 
               "Nota_Materia3", "Aprobado_M3")
