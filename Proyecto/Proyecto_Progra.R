@@ -67,10 +67,15 @@ cat(paste("   • Nota mínima de aprobación:", CORTE_APROBACION, "\n"))
 cat("\n")
 
 #Columnas del DF
-columnas <- c("Nombre", 
-              "Nota_Materia1", "Aprobado_M1", 
-              "Nota_Materia2", "Aprobado_M2", 
-              "Nota_Materia3", "Aprobado_M3")
+
+
+columnas <- c("Nombre")
+for (i in 1:NUM_MATERIAS){
+  columnas <- c(columnas,
+                paste0("Nota_Materia",i),
+                paste0("Aprobado_M",i)
+                )
+} #ISAAC
 
 # Inicializamos el DF vacío
 df_calificaciones <- data.frame(matrix(ncol = length(columnas), nrow = 0))
