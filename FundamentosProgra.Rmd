@@ -1,0 +1,552 @@
+---
+title: "Fundamentos de Programación en R"
+author: "Isaac Rodriguez"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cosmo
+    highlight: tango
+    code_folding: show
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# 1. Introducción a R
+
+R es un lenguaje de programación diseñado para análisis estadístico y visualización de datos. Es gratuito, de código abierto y cuenta con una comunidad muy activa.
+
+## 1.1 Variables y Tipos de Datos
+
+En R, creamos variables usando el operador `<-` o `=`:
+
+```{r variables}
+# Números
+edad <- 25
+altura <- 1.75
+temperatura <- -5.3
+
+# Caracteres (texto)
+nombre <- "María"
+ciudad <- "Madrid"
+
+# Lógicos (booleanos)
+es_estudiante <- TRUE
+tiene_coche <- FALSE
+
+# Mostrar valores
+print(paste("Mi nombre es", nombre, "y tengo", edad, "años"))
+```
+
+## 1.2 Tipos de Datos Básicos
+
+```{r tipos_datos}
+# Numeric (números decimales)
+x <- 10.5
+class(x)
+
+# Integer (números enteros)
+y <- 10L
+class(y)
+
+# Character (texto)
+z <- "Hola R"
+class(z)
+
+# Logical (verdadero/falso)
+w <- TRUE
+class(w)
+```
+
+# 2. Estructuras de Datos
+
+## 2.1 Vectores
+
+Los vectores son la estructura más básica en R. Contienen elementos del mismo tipo.
+
+```{r vectores}
+# Crear vectores
+numeros <- c(1, 2, 3, 4, 5)
+frutas <- c("manzana", "banana", "naranja")
+logicos <- c(TRUE, FALSE, TRUE, TRUE)
+
+# Operaciones con vectores
+numeros * 2
+numeros + 10
+
+# Acceder a elementos (R empieza en 1, no en 0)
+frutas[1]  # Primera fruta
+numeros[3:5]  # Del tercero al quinto elemento
+```
+
+## 2.2 Matrices
+
+Las matrices son arreglos bidimensionales de datos del mismo tipo.
+
+```{r matrices}
+# Crear una matriz 3x3
+matriz <- matrix(1:9, nrow = 3, ncol = 3)
+print(matriz)
+
+# Acceder a elementos
+matriz[2, 3]  # Fila 2, columna 3
+matriz[1, ]   # Primera fila completa
+matriz[, 2]   # Segunda columna completa
+
+# Operaciones con matrices
+matriz * 2
+```
+
+## 2.3 Data Frames
+
+Los data frames son tablas de datos, similares a hojas de cálculo.
+
+```{r dataframes}
+# Crear un data frame
+estudiantes <- data.frame(
+  nombre = c("Ana", "Luis", "Carlos", "María"),
+  edad = c(20, 22, 21, 23),
+  nota = c(8.5, 7.0, 9.2, 8.8),
+  aprobado = c(TRUE, TRUE, TRUE, TRUE)
+)
+
+print(estudiantes)
+
+# Acceder a columnas
+estudiantes$nombre
+estudiantes[, "edad"]
+
+# Filtrar datos
+estudiantes[estudiantes$nota > 8, ]
+```
+
+## 2.4 Listas
+
+Las listas pueden contener elementos de diferentes tipos.
+
+```{r listas}
+# Crear una lista
+mi_lista <- list(
+  numeros = c(1, 2, 3),
+  texto = "Hola",
+  matriz = matrix(1:4, nrow = 2),
+  logico = TRUE
+)
+
+# Acceder a elementos
+mi_lista$numeros
+mi_lista[[2]]
+```
+
+# 3. Operadores
+
+## 3.1 Operadores Aritméticos
+
+```{r operadores_arit}
+a <- 10
+b <- 3
+
+suma <- a + b
+resta <- a - b
+multiplicacion <- a * b
+division <- a / b
+potencia <- a ^ 2
+modulo <- a %% b  # Residuo
+
+cat("Suma:", suma, "\n")
+cat("División:", division, "\n")
+cat("Potencia:", potencia, "\n")
+```
+
+## 3.2 Operadores de Comparación
+
+```{r operadores_comp}
+x <- 5
+y <- 10
+
+x == y  # Igual a
+x != y  # Diferente de
+x < y   # Menor que
+x > y   # Mayor que
+x <= y  # Menor o igual
+x >= y  # Mayor o igual
+```
+
+## 3.3 Operadores Lógicos
+
+```{r operadores_log}
+# AND lógico
+TRUE & TRUE
+TRUE & FALSE
+
+# OR lógico
+TRUE | FALSE
+FALSE | FALSE
+
+# NOT lógico
+!TRUE
+!FALSE
+```
+
+# 4. Estructuras de Control
+
+## 4.1 Condicionales (if-else)
+
+```{r condicionales}
+# If simple
+numero <- 15
+
+if (numero > 10) {
+  print("El número es mayor que 10")
+}
+
+# If-else
+edad <- 18
+
+if (edad >= 18) {
+  print("Eres mayor de edad")
+} else {
+  print("Eres menor de edad")
+}
+
+# If-else if-else
+calificacion <- 85
+
+if (calificacion >= 90) {
+  print("Excelente")
+} else if (calificacion >= 70) {
+  print("Bueno")
+} else if (calificacion >= 50) {
+  print("Aprobado")
+} else {
+  print("Reprobado")
+}
+```
+
+## 4.2 Bucles (Loops)
+
+### Bucle FOR
+
+```{r bucle_for}
+# Bucle for simple
+for (i in 1:5) {
+  print(paste("Iteración número:", i))
+}
+
+# For con vectores
+frutas <- c("manzana", "pera", "uva")
+for (fruta in frutas) {
+  print(paste("Me gusta la", fruta))
+}
+```
+
+### Bucle WHILE
+
+```{r bucle_while}
+# While loop
+contador <- 1
+while (contador <= 5) {
+  print(paste("Contador:", contador))
+  contador <- contador + 1
+}
+```
+
+# 5. Funciones
+
+## 5.1 Funciones Básicas de R
+
+```{r funciones_basicas}
+# Funciones estadísticas
+numeros <- c(2, 4, 6, 8, 10)
+
+mean(numeros)    # Media
+median(numeros)  # Mediana
+sd(numeros)      # Desviación estándar
+sum(numeros)     # Suma
+min(numeros)     # Mínimo
+max(numeros)     # Máximo
+length(numeros)  # Longitud
+```
+
+## 5.2 Crear Funciones Propias
+
+```{r funciones_propias}
+# Función simple
+saludar <- function(nombre) {
+  mensaje <- paste("¡Hola,", nombre, "!")
+  return(mensaje)
+}
+
+saludar("Ana")
+
+# Función con múltiples parámetros
+calcular_area_rectangulo <- function(base, altura) {
+  area <- base * altura
+  return(area)
+}
+
+calcular_area_rectangulo(5, 3)
+
+# Función con valor por defecto
+potencia <- function(numero, exponente = 2) {
+  resultado <- numero ^ exponente
+  return(resultado)
+}
+
+potencia(5)      # Usa exponente por defecto (2)
+potencia(5, 3)   # Usa exponente 3
+```
+
+# 6. Visualización de Datos
+
+## 6.1 Gráficos Base de R
+
+```{r graficos_base, fig.width=10, fig.height=6}
+# Datos de ejemplo
+x <- 1:10
+y <- x^2
+
+# Gráfico de dispersión
+plot(x, y, 
+     main = "Gráfico de Dispersión",
+     xlab = "Eje X",
+     ylab = "Eje Y",
+     col = "blue",
+     pch = 19,
+     cex = 1.5)
+
+# Agregar línea
+lines(x, y, col = "red", lwd = 2)
+```
+
+```{r histograma, fig.width=8, fig.height=5}
+# Histograma
+datos <- rnorm(1000, mean = 50, sd = 10)
+hist(datos,
+     main = "Histograma de Datos Normales",
+     xlab = "Valores",
+     ylab = "Frecuencia",
+     col = "lightblue",
+     border = "white",
+     breaks = 30)
+```
+
+```{r boxplot, fig.width=8, fig.height=5}
+# Boxplot
+grupos <- data.frame(
+  valores = c(rnorm(100, 50, 10), rnorm(100, 60, 15), rnorm(100, 55, 8)),
+  grupo = rep(c("A", "B", "C"), each = 100)
+)
+
+boxplot(valores ~ grupo, 
+        data = grupos,
+        main = "Comparación de Grupos",
+        xlab = "Grupo",
+        ylab = "Valores",
+        col = c("lightblue", "lightgreen", "lightcoral"))
+```
+
+## 6.2 Gráficos con ggplot2
+
+```{r ggplot2, fig.width=10, fig.height=6}
+# Instalar y cargar ggplot2 si es necesario
+if (!require(ggplot2)) install.packages("ggplot2")
+library(ggplot2)
+
+# Crear datos de ejemplo
+datos_gg <- data.frame(
+  x = rep(1:10, 3),
+  y = c(1:10, (1:10)^1.5, (1:10)^0.5),
+  grupo = rep(c("Lineal", "Cuadrático", "Raíz"), each = 10)
+)
+
+# Gráfico con ggplot2
+ggplot(datos_gg, aes(x = x, y = y, color = grupo)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 3) +
+  theme_minimal() +
+  labs(title = "Comparación de Funciones",
+       x = "Eje Z",
+       y = "Eje Y",
+       color = "Tipo de Función") +
+  theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"))
+```
+
+# 7. Trabajar con Datos
+
+## 7.1 Importar y Exportar Datos
+
+```{r importar_exportar, eval=FALSE}
+# Leer archivo CSV
+datos <- read.csv("archivo.csv")
+
+# Leer archivo Excel (requiere paquete readxl)
+library(readxl)
+datos_excel <- read_excel("archivo.xlsx")
+
+# Guardar como CSV
+write.csv(estudiantes, "estudiantes.csv", row.names = FALSE)
+
+# Guardar como RDS (formato de R)
+saveRDS(estudiantes, "estudiantes.rds")
+
+# Leer RDS
+datos_rds <- readRDS("estudiantes.rds")
+```
+
+## 7.2 Manipulación de Datos
+
+```{r manipulacion}
+# Crear datos de ejemplo
+ventas <- data.frame(
+  producto = c("A", "B", "C", "A", "B"),
+  cantidad = c(10, 15, 8, 12, 20),
+  precio = c(100, 150, 80, 100, 150)
+)
+
+# Agregar columna
+ventas$total <- ventas$cantidad * ventas$precio
+
+# Resumen de datos
+summary(ventas)
+
+# Ordenar datos
+ventas[order(ventas$total, decreasing = TRUE), ]
+
+# Agregar por grupo
+aggregate(total ~ producto, data = ventas, FUN = sum)
+```
+
+# 8. Ejemplo Práctico Completo
+
+## Análisis de Calificaciones
+
+```{r ejemplo_completo, fig.width=10, fig.height=8}
+# Generar datos de ejemplo
+set.seed(123)
+n_estudiantes <- 50
+
+calificaciones <- data.frame(
+  estudiante = paste("Est", 1:n_estudiantes),
+  matematicas = round(rnorm(n_estudiantes, 75, 10)),
+  ciencias = round(rnorm(n_estudiantes, 70, 12)),
+  lenguaje = round(rnorm(n_estudiantes, 80, 8))
+)
+
+# Calcular promedio
+calificaciones$promedio <- rowMeans(calificaciones[, 2:4])
+
+# Clasificar estudiantes
+calificaciones$clasificacion <- ifelse(calificaciones$promedio >= 85, "Excelente",
+                                       ifelse(calificaciones$promedio >= 70, "Bueno",
+                                              ifelse(calificaciones$promedio >= 60, "Regular", "Insuficiente")))
+
+# Estadísticas descriptivas
+cat("=== RESUMEN DE CALIFICACIONES ===\n")
+cat("Promedio general:", round(mean(calificaciones$promedio), 2), "\n")
+cat("Calificación máxima:", max(calificaciones$promedio), "\n")
+cat("Calificación mínima:", min(calificaciones$promedio), "\n\n")
+
+# Tabla de frecuencias
+cat("Distribución por clasificación:\n")
+print(table(calificaciones$clasificacion))
+
+# Visualización
+par(mfrow = c(2, 2))
+
+# Histograma de promedios
+hist(calificaciones$promedio,
+     main = "Distribución de Promedios",
+     xlab = "Promedio",
+     col = "steelblue",
+     breaks = 15)
+
+# Boxplot por materia
+boxplot(calificaciones[, 2:4],
+        main = "Comparación por Materia",
+        names = c("Matemáticas", "Ciencias", "Lenguaje"),
+        col = c("coral", "lightgreen", "lightblue"),
+        ylab = "Calificación")
+
+# Gráfico de barras de clasificación
+barplot(table(calificaciones$clasificacion),
+        main = "Estudiantes por Clasificación",
+        col = rainbow(4),
+        ylab = "Cantidad")
+
+# Gráfico de dispersión
+plot(calificaciones$matematicas, calificaciones$ciencias,
+     main = "Matemáticas vs Ciencias",
+     xlab = "Matemáticas",
+     ylab = "Ciencias",
+     col = "purple",
+     pch = 19)
+abline(lm(ciencias ~ matematicas, data = calificaciones), col = "red", lwd = 2)
+
+par(mfrow = c(1, 1))
+```
+
+# 9. Consejos y Buenas Prácticas
+
+## 9.1 Comentarios
+
+```{r comentarios}
+# Los comentarios ayudan a entender el código
+# Usa comentarios para explicar QUÉ hace el código y POR QUÉ
+
+# Mal comentario (obvio)
+x <- 5  # Asignar 5 a x
+
+# Buen comentario (explica el propósito)
+umbral_aprobado <- 60  # Calificación mínima para aprobar el curso
+```
+
+## 9.2 Nombres de Variables
+
+```{r nombres}
+# Buenos nombres (descriptivos)
+edad_estudiante <- 20
+precio_producto <- 99.99
+es_mayor_edad <- TRUE
+
+# Malos nombres (poco claros)
+x1 <- 20
+p <- 99.99
+flag <- TRUE
+```
+
+## 9.3 Manejo de Errores
+
+```{r errores}
+# Usar try-catch para manejar errores
+resultado <- tryCatch({
+  # Código que puede fallar
+  numero <- as.numeric("abc")
+  numero * 2
+}, error = function(e) {
+  # Qué hacer si hay error
+  print("Error: No se pudo convertir a número")
+  return(NA)
+})
+
+print(resultado)
+```
+
+# 10. Recursos Adicionales
+
+Para seguir aprendiendo R:
+
+- **Documentación oficial**: `help(función)` o `?función`
+- **RStudio Cheat Sheets**: Hojas de referencia rápida
+- **CRAN**: Repositorio de paquetes de R
+- **Stack Overflow**: Comunidad de programadores
+- **R-bloggers**: Blog con tutoriales y ejemplos
+
+---
+
+**¡Felicidades!** Has completado esta guía de fundamentos de programación en R. Practica con tus propios datos y experimenta con diferentes funciones y paquetes.

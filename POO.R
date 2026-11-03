@@ -1,3 +1,5 @@
+rm(list = ls())
+
 library(R6)
 
 # Definimos la Clase "Cuenta"
